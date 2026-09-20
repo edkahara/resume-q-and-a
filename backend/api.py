@@ -86,7 +86,7 @@ def health_check():
     return {
         "status": "ok",
         "pinecone_connected": pinecone_ok,
-        "anthropic_configured": bool(os.getenv("ANTHROPIC_API_KEY,")),
+        "anthropic_configured": bool(os.getenv("ANTHROPIC_API_KEY")),
         "index": INDEX_NAME
     }
 
