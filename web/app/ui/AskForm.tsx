@@ -1,6 +1,6 @@
 "use client";
 
-import { askQuestion, checkHeahlth } from "@/lib/api";
+import { askQuestion, checkHealth } from "@/lib/api";
 import { useEffect, useRef, useState } from "react";
 
 type HealthStatus = "checking" | "up" | "down";
@@ -15,7 +15,7 @@ export default function AskForm() {
   const [healthStatus, setHealthStatus] = useState<HealthStatus>("checking");
 
   useEffect(() => {
-    checkHeahlth()
+    checkHealth()
       .then((response) =>
         setHealthStatus(response.status === "ok" ? "up" : "down"),
       )
