@@ -76,6 +76,7 @@ class QuestionRequest(BaseModel):
 
 @app.get("/health")
 def health_check():
+    """Checks that all dependencies are reachable."""
     pinecone_ok = False
     try:
         pinecone_client.list_indexes()
@@ -92,6 +93,7 @@ def health_check():
 
 @app.post("/ask")
 def ask_question(request: QuestionRequest):
+    """Asks a question about the resume."""
     logger.info(f"Question for {PDF_NAME}: {request.question[:80]}...")
 
     query_embedding = embed_text(request.question)
