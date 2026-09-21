@@ -24,6 +24,16 @@ async function proxy(
     return Response.json({ detail: "Not found" }, { status: 404 });
   }
 
+  // TODO: Remove after checking Railway's header behaviour
+  console.log(
+    "[ip-debug]",
+    JSON.stringify({
+      path: target,
+      xForwardedFor: request.headers.get("x-forwarded-for"),
+      xRealIp: request.headers.get("x-real-ip"),
+    }),
+  );
+
   let backendResponse: Response;
   try {
     backendResponse = await fetch(`${baseUrl}/${target}`, {
