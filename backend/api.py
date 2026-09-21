@@ -67,7 +67,7 @@ def embed_text(text: str) -> list[float]:
     response = voyage_client.embed(
         [text],
         model=EMBEDDING_MODEL,
-        input_type="document"
+        input_type="query"
     )
     return response.embeddings[0]
 
