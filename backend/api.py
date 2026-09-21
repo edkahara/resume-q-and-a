@@ -91,7 +91,7 @@ def health_check():
     }
 
 @app.post("/ask")
-async def ask_question(request: QuestionRequest):
+def ask_question(request: QuestionRequest):
     logger.info(f"Question for {PDF_NAME}: {request.question[:80]}...")
 
     query_embedding = embed_text(request.question)
@@ -112,7 +112,7 @@ async def ask_question(request: QuestionRequest):
     logger.info(f"Retrieved {len(chunks)} relevant chunks")
 
     if not chunks:
-        async def no_context():
+        def no_context():
             yield "I could not find relevant sections in the resume to answer your question. Try rephrasing or download the resume."
         return StreamingResponse(no_context(), media_type="text/plain")
 
