@@ -2,6 +2,8 @@
 
 import { askQuestion, checkHealth } from "@/lib/api";
 import { useEffect, useRef, useState } from "react";
+import { Streamdown } from "streamdown";
+import "streamdown/styles.css";
 
 type HealthStatus = "checking" | "up" | "down";
 
@@ -121,8 +123,8 @@ export default function AskForm() {
           <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
             Answer
           </h2>
-          <div className="whitespace-pre-wrap rounded-md border border-zinc-200 px-4 py-3 leading-7 dark:border-zinc-800">
-            {answer}
+          <div className="whitespace-pre-wrap rounded-md border border-zinc-200 px-4 py-3 leading-7 prose prose-zinc prose-p:my-0 prose-ul:my-0 prose-li:my-0 dark:prose-invert dark:border-zinc-800">
+            <Streamdown>{answer}</Streamdown>
             {isStreaming && <span className="animate-pulse">▍</span>}
           </div>
         </section>
