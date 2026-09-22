@@ -24,6 +24,7 @@ Endpoints:
 
 import os
 import logging
+from datetime import date
 from typing import Optional
 import voyageai
 from fastapi import FastAPI
@@ -125,12 +126,14 @@ def ask_question(request: QuestionRequest):
             model=GENERATION_MODEL,
             max_tokens=2048,
             output_config={"effort": "high"},
-            system="""You are a document assistant.
+            system=f"""You are a document assistant.
                 Answer questions based only on the provided document sections.
                 Be direct and specific.
                 If the answer is not clearly in the provided sections, say so.
                 Do not fabricate information.
                 When referencing specific information, indicate which part of the document it came from.
+                Today's date is {date.today().isoformat()}. Use it for any date arithmetic,
+                such as computing how long a "Present"-ended role has lasted.
                 """,
             messages=[{
                 "role": "user",
