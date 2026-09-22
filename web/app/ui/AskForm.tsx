@@ -62,12 +62,12 @@ export default function AskForm() {
     HealthStatus,
     { color: string; label: string }
   > = {
-    up: { color: "bg-green-500", label: "Backend connected." },
+    up: { color: "bg-green-500", label: "Bot connected. Ask away." },
     down: {
       color: "bg-red-500",
-      label: "Backend unreachable. Please reload the page.",
+      label: "The bot is not connected. Please reload the page.",
     },
-    checking: { color: "bg-zinc-500", label: "Checking backend..." },
+    checking: { color: "bg-zinc-500", label: "Connecting to bot..." },
   };
 
   return (
@@ -84,13 +84,14 @@ export default function AskForm() {
         className="flex flex-col gap-4"
       >
         <label className="flex flex-col gap-1.5 text-sm font-medium">
-          Question
+          This is my bot. Ask questions about me and get answers based on my
+          resume.
           <textarea
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             rows={3}
             maxLength={2000}
-            placeholder="How much professional software development experience does Edward have?"
+            placeholder="How much professional software engineering experience does Edward have?"
             className="resize-y rounded-md border border-zinc-300 bg-transparent px-3 py-2 text-base font-normal outline-none focus:border-zinc-500 dark:border-zinc-700 dark:focus:border-zinc-400"
           />
         </label>

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Resume Q&A",
+  title: "Edward Njoroge Kahara",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
