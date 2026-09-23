@@ -8,12 +8,12 @@ export default function Home() {
           Edward Njoroge Kahara
         </h1>
         <a
-          href="https://drive.google.com/file/d/1YcwmMx0VHUWTa9UGg7hBEy1q_dJJnTXe/view?usp=sharing"
+          href="https://drive.google.com/file/d/1I_I3v9vI3Z1OTwfQuwmksIxUGIpf5sa3/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="w-fit font-medium underline underline-offset-4"
         >
-          Download resume
+          View resume
         </a>
       </header>
       <AskForm />
