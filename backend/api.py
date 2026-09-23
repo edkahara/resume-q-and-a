@@ -25,13 +25,12 @@ Endpoints:
 import os
 import logging
 from datetime import date
-from typing import Optional
 import voyageai
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 from anthropic import Anthropic
-from pinecone import Pinecone, ServerlessSpec
+from pinecone import Pinecone
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -43,7 +42,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = FastAPI(
-    title="Resume Q & A service",
+    title="Resume Q&A service",
     description="Ask questions about Edward Kahara's resume.",
     version="1.0.0"
 )
@@ -52,15 +51,14 @@ anthropic_client = Anthropic()
 voyage_client = voyageai.Client()
 pinecone_client = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 
-INDEX_NAME = os.getenv("INDEX_NAME")
+PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME")
 PDF_NAME = os.getenv("PDF_NAME")
 EMBEDDING_MODEL = "voyage-3"
 GENERATION_MODEL = "claude-sonnet-5"
-EMBEDDING_DIMENSIONS = 1024
 # MIN_SIMILARITY = 0.7
 
 def get_index():
-    return pinecone_client.Index(INDEX_NAME)
+    return pinecone_client.Index(PINECONE_INDEX_NAME)
 
 index = get_index()
 
@@ -89,7 +87,7 @@ def health_check():
         "status": "ok",
         "pinecone_connected": pinecone_ok,
         "anthropic_configured": bool(os.getenv("ANTHROPIC_API_KEY")),
-        "index": INDEX_NAME
+        "index": PINECONE_INDEX_NAME
     }
 
 @app.post("/ask")
